@@ -1,0 +1,12 @@
+[package]
+name = "mindland_render"
+version = "0.1.0"
+edition = "2021"
+description = "Ultra-optimized 3D rendering pipeline for MindLand"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+bevy = { workspace = true }
+glam = { workspace = true }
+bytemuck = { workspace = true }
+slotmap = { workspace = true }

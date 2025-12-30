@@ -1,0 +1,15 @@
+[package]
+name = "mindland_assets"
+version = "0.1.0"
+edition = "2021"
+description = "High-performance asset management system for MindLand"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+bevy = { workspace = true }
+slotmap = { workspace = true }
+lru = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }

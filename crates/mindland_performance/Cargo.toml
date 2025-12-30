@@ -1,0 +1,12 @@
+[package]
+name = "mindland_performance"
+version = "0.1.0"
+edition = "2021"
+description = "Real-time performance monitoring and optimization for MindLand"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+bevy = { workspace = true }
+parking_lot = { workspace = true }
+crossbeam = { workspace = true }
+serde = { workspace = true }

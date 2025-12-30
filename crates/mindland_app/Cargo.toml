@@ -1,0 +1,21 @@
+[package]
+name = "mindland_app"
+version = "0.1.0"
+edition = "2021"
+description = "MindLand main application and engine initialization"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+bevy = { workspace = true }
+glam = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+# Internal crate dependencies (will be added as we create them)
+mindland_window = { path = "../mindland_window" }
+mindland_input = { path = "../mindland_input" }
+mindland_camera = { path = "../mindland_camera" }
+mindland_render = { path = "../mindland_render" }
+mindland_assets = { path = "../mindland_assets" }
+mindland_performance = { path = "../mindland_performance" }

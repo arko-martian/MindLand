@@ -1,0 +1,111 @@
+[workspace]
+members = [
+    "crates/mindland_app",
+    "crates/mindland_window", 
+    "crates/mindland_input",
+    "crates/mindland_camera",
+    "crates/mindland_render",
+    "crates/mindland_assets",
+    "crates/mindland_performance",
+]
+
+resolver = "2"
+
+[workspace.dependencies]
+# Bevy ECS Framework - Core engine foundation
+bevy = { version = "0.12", default-features = false, features = [
+    "bevy_winit",
+    "bevy_render",
+    "bevy_core_pipeline", 
+    "bevy_pbr",
+    "bevy_asset",
+    "bevy_scene",
+    "bevy_gltf",
+    "png",
+    "hdr",
+    "ktx2",
+    "zstd",
+    "vorbis",
+    "x11",
+    "filesystem_watcher",
+] }
+
+# Performance and SIMD optimizations
+glam = { version = "0.24", features = ["bytemuck"] }
+bytemuck = { version = "1.14", features = ["derive"] }
+
+# Async and concurrency
+tokio = { version = "1.0", features = ["rt-multi-thread", "macros"] }
+crossbeam = "0.8"
+parking_lot = "0.12"
+
+# Memory management and collections
+slotmap = "1.0"
+lru = "0.12"
+
+# Error handling and logging
+anyhow = "1.0"
+thiserror = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+
+# Platform-specific dependencies (defined in individual crates)
+metal = "0.27"
+cocoa = "0.25"
+core-foundation = "0.9"
+winapi = { version = "0.3", features = ["winuser", "wingdi", "d3d12"] }
+windows = { version = "0.52", features = ["Win32_Graphics_Direct3D12"] }
+x11 = "2.21"
+
+[profile.dev]
+# Development profile optimized for fast compilation
+opt-level = 1
+debug = true
+split-debuginfo = "unpacked"
+debug-assertions = true
+overflow-checks = true
+lto = false
+panic = "unwind"
+incremental = true
+codegen-units = 256
+
+[profile.release]
+# Ultra-high performance release profile
+opt-level = 3
+debug = false
+split-debuginfo = "off"
+debug-assertions = false
+overflow-checks = false
+lto = "fat"           # Full Link Time Optimization
+panic = "abort"       # Smaller binary, faster execution
+incremental = false
+codegen-units = 1     # Maximum optimization
+strip = true          # Remove debug symbols
+
+# Enable CPU-specific optimizations
+[profile.release.build-override]
+opt-level = 3
+codegen-units = 1
+
+# Performance-critical profile for benchmarking
+[profile.bench]
+inherits = "release"
+debug = true
+lto = "thin"
+
+# Custom profile for MacBook Pro 2014 optimization
+[profile.macbook]
+inherits = "release"
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+
+# SIMD and target CPU optimizations (set via environment or .cargo/config.toml)
+# RUSTFLAGS = "-C target-cpu=native -C target-feature=+crt-static"
+
+# Cargo configuration for faster builds (optional)
+# rustc-wrapper = "sccache"  # requires sccache installation

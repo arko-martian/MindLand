@@ -1,0 +1,13 @@
+[package]
+name = "mindland_input"
+version = "0.1.0"
+edition = "2021"
+description = "Ultra-fast input handling system for MindLand"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+bevy = { workspace = true }
+glam = { workspace = true }
+crossbeam = { workspace = true }
+parking_lot = { workspace = true }
+bytemuck = { workspace = true }
