@@ -111,7 +111,12 @@ impl AtomicMouseState {
 
     /// Set mouse button state atomically
     pub fn set_button_state(&self, button: MouseButton, pressed: bool) {
-        let button_bit = 1u64 << (button as u8);
+        let button_bit = match button {
+            MouseButton::Left => 1u64,
+            MouseButton::Right => 2u64,
+            MouseButton::Middle => 4u64,
+            MouseButton::Other(id) => 1u64 << (id.min(63) + 3), // Prevent overflow
+        };
         let current = self.buttons.load(Ordering::Acquire);
         let new_state = if pressed {
             current | button_bit
@@ -123,7 +128,12 @@ impl AtomicMouseState {
 
     /// Check if mouse button is pressed
     pub fn is_button_pressed(&self, button: MouseButton) -> bool {
-        let button_bit = 1u64 << (button as u8);
+        let button_bit = match button {
+            MouseButton::Left => 1u64,
+            MouseButton::Right => 2u64,
+            MouseButton::Middle => 4u64,
+            MouseButton::Other(id) => 1u64 << (id.min(63) + 3), // Prevent overflow
+        };
         (self.buttons.load(Ordering::Acquire) & button_bit) != 0
     }
 }

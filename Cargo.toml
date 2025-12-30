@@ -19,15 +19,7 @@ bevy = { version = "0.12", default-features = false, features = [
     "bevy_core_pipeline", 
     "bevy_pbr",
     "bevy_asset",
-    "bevy_scene",
-    "bevy_gltf",
     "png",
-    "hdr",
-    "ktx2",
-    "zstd",
-    "vorbis",
-    "x11",
-    "filesystem_watcher",
 ] }
 
 # Performance and SIMD optimizations
@@ -51,6 +43,11 @@ tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 
 # Serialization
 serde = { version = "1.0", features = ["derive"] }
+
+# Testing and benchmarking
+proptest = "1.4"
+criterion = { version = "0.5", features = ["html_reports"] }
+tokio-test = "0.4"
 
 # Platform-specific dependencies (defined in individual crates)
 metal = "0.27"

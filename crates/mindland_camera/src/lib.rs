@@ -2,8 +2,11 @@
 //! 
 //! First-person camera with sub-millisecond response time and quaternion-based rotation.
 
-use bevy::prelude::*;
-use glam::{Vec3A, Quat};
+use bevy::{
+    prelude::*,
+    render::camera::CameraProjection,
+};
+use glam::Quat;
 
 /// High-performance first-person camera controller
 #[derive(Component)]

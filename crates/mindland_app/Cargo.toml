@@ -9,6 +9,7 @@ license = "MIT OR Apache-2.0"
 bevy = { workspace = true }
 glam = { workspace = true }
 anyhow = { workspace = true }
+thiserror = { workspace = true }
 tracing = { workspace = true }
 tracing-subscriber = { workspace = true }
 
@@ -19,3 +20,8 @@ mindland_camera = { path = "../mindland_camera" }
 mindland_render = { path = "../mindland_render" }
 mindland_assets = { path = "../mindland_assets" }
 mindland_performance = { path = "../mindland_performance" }
+
+[dev-dependencies]
+proptest = "1.4"
+criterion = { version = "0.5", features = ["html_reports"] }
+tokio-test = "0.4"

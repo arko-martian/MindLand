@@ -2,7 +2,10 @@
 //! 
 //! High-performance asset loading and caching with LRU cache and async loading.
 
-use bevy::prelude::*;
+use bevy::{
+    prelude::*,
+    render::render_resource::TextureFormat,
+};
 use slotmap::{SlotMap, DefaultKey};
 use lru::LruCache;
 use std::collections::VecDeque;
